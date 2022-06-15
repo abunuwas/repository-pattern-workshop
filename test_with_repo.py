@@ -1,21 +1,8 @@
-from unittest.mock import MagicMock
-
 from starlette.testclient import TestClient
 
-from data_access.repositories_registry import RepositoriesRegistry
-from dummy_repositories import DummyVoucherRepository, DummyUserRepository, DummyRestaurantRepository, \
-    DummyBookingsRepository
 from server import create_server
 
-server = create_server(
-    repositories_registry=RepositoriesRegistry(
-        bookings_repository=DummyBookingsRepository,
-        restaurant_repository=DummyRestaurantRepository,
-        user_repository=DummyUserRepository,
-        voucher_repository=DummyVoucherRepository,
-    ),
-    session_maker=MagicMock(),
-)
+server = create_server()
 
 test_client = TestClient(app=server)
 
