@@ -49,6 +49,8 @@ def book_table(request: Request, booking_details: BookTable):
         if user.next_milestone == user.points:
             new_voucher = voucher_repo.add(user_id=user_id, expires=datetime.utcnow() + timedelta(days=7))
             user.next_milestone += 10
+        else:
+            new_voucher = None
 
         session.commit()
 

@@ -47,6 +47,9 @@ def book_table(request: Request, booking_details: BookTable):
             new_voucher = Voucher(user_id=user.id, expires=datetime.utcnow() + timedelta(days=7))
             session.add(new_voucher)
             user.next_milestone += 10
+        else:
+            new_voucher = None
+
         session.commit()
         return {
             "booking_id": booking.id,

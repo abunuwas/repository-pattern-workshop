@@ -19,4 +19,4 @@ def test():
     }
     response = test_client.post('/bookings', json=payload)
     assert response.status_code == 201
-    assert response.json()['voucher'] is not None
+    assert response.json()['new_voucher'] is not None
