@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from api2 import router
+from api import router
 
 
 def create_server(repositories_registry=None, session_maker=None):

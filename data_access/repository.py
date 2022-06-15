@@ -53,4 +53,6 @@ class VoucherRepository:
         return self.session.query(Voucher).filter_by(**filters).first()
 
     def add(self, user_id: int, expires: datetime):
-        self.session.add(Voucher(user_id=user_id, expires=expires))
+        voucher = Voucher(user_id=user_id, expires=expires)
+        self.session.add(voucher)
+        return voucher

@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import Optional
 
 from fastapi import APIRouter
 from pydantic import BaseModel, conint
@@ -19,7 +20,7 @@ class BookingConfirmation(BaseModel):
     restaurant: str
     party_size: int
     date_time: datetime
-    voucher: int
+    new_voucher: Optional[int]
 
 
 @router.post("/bookings", status_code=status.HTTP_201_CREATED, response_model=BookingConfirmation)
@@ -56,7 +57,7 @@ def book_table(request: Request, booking_details: BookTable):
             "restaurant": restaurant.name,
             "party_size": booking.party_size,
             "date_time": booking.date_time,
-            "voucher": new_voucher.id if new_voucher else None,
+            "new_voucher": new_voucher.id if new_voucher else None,
         }
 
     # create booking record
